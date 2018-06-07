@@ -2,7 +2,7 @@
 
 The Polarity PulseDive integration allows Polarity to search PulseDive to return threat information on domains and IPs.
 
-![image](https://user-images.githubusercontent.com/306319/40464870-c35860fe-5eeb-11e8-949a-97cccbae574d.png)
+![image](https://user-images.githubusercontent.com/22529325/41103215-95398de6-6a36-11e8-8898-9cc4ec8caacf.png)
 
 
 ## PulseDive Integration Options
