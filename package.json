@@ -1,6 +1,6 @@
 {
   "main": "./integration.js",
-  "name": "PulseDive",
+  "name": "Pulsedive",
   "version": "1.0.0-beta",
   "private": true,
   "dependencies": {
