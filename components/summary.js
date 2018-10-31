@@ -1,7 +1,7 @@
 'use strict';
 
 polarity.export = PolarityComponent.extend({
-  details: Ember.computed.alias('block.data.details.body'),
+  details: Ember.computed.alias('block.data.details'),
 
   summaryTags: Ember.computed('details.risk', function(){
         let summaryTags = [];
