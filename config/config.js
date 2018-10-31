@@ -95,7 +95,7 @@ module.exports = {
     },
     {
       key: 'riskLevelDisplay',
-      name: 'Risk Levels to Display',
+      name: 'Minimum Risk Level to Display',
       description:
         'Only display indicators that have a Risk value greater or equal to the selected risk level.',
       default: {
