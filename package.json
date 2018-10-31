@@ -1,11 +1,10 @@
 {
   "main": "./integration.js",
   "name": "Pulsedive",
-  "version": "1.0.0-beta",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
-    "request": "^2.83",
-    "lodash": "^4.17",
-    "async": "^2.5"
+    "request": "^2.88",
+    "async": "^2.6"
   }
 }
