@@ -2,8 +2,7 @@
 
 The Polarity Pulsedive integration allows Polarity to search Pulsedive to return threat information on domains and IPs.
 
-![image](https://user-images.githubusercontent.com/22529325/41103215-95398de6-6a36-11e8-8898-9cc4ec8caacf.png)
-
+![image](https://user-images.githubusercontent.com/306319/47765161-036a2980-dc9f-11e8-91fc-cf8f2583291f.png)
 
 ## Pulsedive Integration Options
 
@@ -13,6 +12,13 @@ A free API Key is provided by Pulsedive, however there is a rate limit of 30 req
 
 https://pulsedive.com/account/
 
+### Risk Levels to Display
+
+Only display indicators that have a Risk value greater or equal to the selected risk level.
+
+### Show Indicators with Unknown Risk
+
+If checked, the integration will display indicators with an Risk level of "unknown".
 
 ## Installation Instructions
 
