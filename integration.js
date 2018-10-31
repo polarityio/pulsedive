@@ -73,7 +73,7 @@ function doLookup(entities, options, cb) {
     tasks.push(function(done) {
       requestWithDefaults(requestOptions, function(error, res, body) {
         Logger.trace(
-          { body: body, statusCode: res.statusCode, entity: entity.value },
+          { body: body, statusCode: res ? res.statusCode : 'Not Available', entity: entity.value },
           'Result of Lookup'
         );
 
