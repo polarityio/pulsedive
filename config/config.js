@@ -142,7 +142,7 @@ module.exports = {
     {
       key: 'blacklist',
       name: 'Blacklist Domains',
-      description: 'List of domains that you never want to send to AlienVaultOTX',
+      description: 'Comma delimited list of domains that you do not want to lookup.',
       default: '',
       type: 'text',
       userCanEdit: false,
