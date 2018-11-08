@@ -7,6 +7,10 @@ const fs = require('fs');
 
 let Logger;
 let requestWithDefaults;
+let previousDomainRegexAsString = '';
+let previousIpRegexAsString = '';
+let domainBlacklistRegex = null;
+let ipBlacklistRegex = null;
 
 const MAX_PARALLEL_LOOKUPS = 10;
 const IGNORED_IPS = new Set(['127.0.0.1', '255.255.255.255', '0.0.0.0']);
@@ -46,14 +50,51 @@ function startup(logger) {
   requestWithDefaults = request.defaults(defaults);
 }
 
+function _setupRegexBlacklists(options) {
+  if (
+    options.domainBlacklistRegex !== previousDomainRegexAsString &&
+    options.domainBlacklistRegex.length === 0
+  ) {
+    Logger.debug('Removing Domain Blacklist Regex Filtering');
+    previousDomainRegexAsString = '';
+    domainBlacklistRegex = null;
+  } else {
+    if (options.domainBlacklistRegex !== previousDomainRegexAsString) {
+      previousDomainRegexAsString = options.domainBlacklistRegex;
+      Logger.debug(
+        { domainBlacklistRegex: previousDomainRegexAsString },
+        'Modifying Domain Blacklist Regex'
+      );
+      domainBlacklistRegex = new RegExp(options.domainBlacklistRegex, 'i');
+    }
+  }
+
+  if (
+    options.ipBlacklistRegex !== previousIpRegexAsString &&
+    options.ipBlacklistRegex.length === 0
+  ) {
+    Logger.debug('Removing IP Blacklist Regex Filtering');
+    previousIpRegexAsString = '';
+    ipBlacklistRegex = null;
+  } else {
+    if (options.ipBlacklistRegex !== previousIpRegexAsString) {
+      previousIpRegexAsString = options.ipBlacklistRegex;
+      Logger.debug({ ipBlacklistRegex: previousIpRegexAsString }, 'Modifying IP Blacklist Regex');
+      ipBlacklistRegex = new RegExp(options.ipBlacklistRegex, 'i');
+    }
+  }
+}
+
 function doLookup(entities, options, cb) {
   const lookupResults = [];
   const tasks = [];
 
+  _setupRegexBlacklists(options);
+
   Logger.debug(entities);
 
   entities.forEach((entity) => {
-    if (_isValidEntity(entity) === false) {
+    if (_isValidEntity(entity) === false || _isEntityBlacklisted(entity)) {
       Logger.debug({ entity: entity.value }, 'Ignoring Entity');
       return;
     }
@@ -149,6 +190,28 @@ function doLookup(entities, options, cb) {
 
     cb(null, lookupResults);
   });
+}
+
+function _isEntityBlacklisted(entityObj) {
+    if (entityObj.isIPv4 && !entityObj.isPrivateIP) {
+        if (ipBlacklistRegex !== null) {
+            if (ipBlacklistRegex.test(entityObj.value)) {
+                Logger.debug({ ip: entityObj.value }, 'Blocked BlackListed IP Lookup');
+                return true;
+            }
+        }
+    }
+
+    if (entityObj.isDomain) {
+        if (domainBlacklistRegex !== null) {
+            if (domainBlacklistRegex.test(entityObj.value)) {
+                Logger.debug({ domain: entityObj.value }, 'Blocked BlackListed Domain Lookup');
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 /**
