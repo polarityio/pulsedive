@@ -20,6 +20,56 @@ Only display indicators that have a Risk value greater or equal to the selected 
 
 If checked, the integration will display indicators with an Risk level of "unknown".
 
+### Blacklist Domains
+
+Comma delimited list of domains that you do not want to lookup.
+
+### Domain Black List Regex
+
+Domains that match the given regex will not be looked up (if blank, no domains will be black listed)
+
+#### Regex Blacklist to Ignore Domain and Subdomains
+
+The below Regex Blacklist will ignore the domain `google.com` and all of its subdomains.
+
+```
+^(.*\.google\.com|google\.com)
+```
+
+#### Regex Blacklist to Ignore Subdomains
+
+The following regex will ignore all subdomains of `google`:
+
+```
+^.*\.google\.com
+```
+
+If you also wanted to ignore the base domain you could add the following to your `Blacklist Domains` option:
+
+```
+google.com
+```
+
+#### Ignoring Multiple Domains
+
+You can also ignore multiple domains.  For example, if you wanted to ignore all subdomains of `linkedin` and `google` you could add this to the regex blacklist:
+
+```
+^(.*\.google\.com|.*\.linkedin\.com)
+```
+
+The above regex will ignore all subdomains of `google` and `linkedin`.  Then in your comma delimited list you would do:
+
+```
+google.com, linkedin.com
+```
+
+This will ignore the actual domain `google.com` and `linkedin.com`.
+
+### IP Black List Regex
+
+IPs that match the given regex will not be looked up (if blank, no IPs will be black listed)
+
 ## Installation Instructions
 
 Installation instructions for integrations are provided on the [PolarityIO GitHub Page](https://polarityio.github.io/).
