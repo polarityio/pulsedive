@@ -52,13 +52,13 @@ google.com
 
 #### Ignoring Multiple Domains
 
-You can also ignore multiple domains.  For example, if you wanted to ignore all subdomains of linkedin and google you could add this to the regex blacklist:
+You can also ignore multiple domains.  For example, if you wanted to ignore all subdomains of `linkedin` and `google` you could add this to the regex blacklist:
 
 ```
 ^(.*\.google\.com|.*\.linkedin\.com)
 ```
 
-The above regex will ignore all subdomains of google and linked.  Then in your comma delimited list you would do:
+The above regex will ignore all subdomains of `google` and `linkedin`.  Then in your comma delimited list you would do:
 
 ```
 google.com, linkedin.com
