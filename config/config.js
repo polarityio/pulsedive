@@ -140,6 +140,15 @@ module.exports = {
       adminOnly: false
     },
     {
+      key: 'blacklist',
+      name: 'Blacklist Domains',
+      description: 'List of domains that you never want to send to AlienVaultOTX',
+      default: '',
+      type: 'text',
+      userCanEdit: false,
+      adminOnly: false
+    },
+    {
       key: 'domainBlacklistRegex',
       name: 'Domain Black List Regex',
       description:

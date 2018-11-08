@@ -7,6 +7,8 @@ const fs = require('fs');
 
 let Logger;
 let requestWithDefaults;
+let domainBlackList = [];
+let previousDomainBlackListAsString = '';
 let previousDomainRegexAsString = '';
 let previousIpRegexAsString = '';
 let domainBlacklistRegex = null;
@@ -66,6 +68,21 @@ function _setupRegexBlacklists(options) {
         'Modifying Domain Blacklist Regex'
       );
       domainBlacklistRegex = new RegExp(options.domainBlacklistRegex, 'i');
+    }
+  }
+
+  if (options.blacklist !== previousDomainBlackListAsString && options.blacklist.length === 0) {
+    Logger.debug('Removing Domain Blacklist Filtering');
+    previousDomainBlackListAsString = '';
+    domainBlackList = null;
+  } else {
+    if (options.blacklist !== previousDomainBlackListAsString) {
+      previousDomainBlackListAsString = options.blacklist;
+      Logger.debug(
+        { domainBlacklist: previousDomainBlackListAsString },
+        'Modifying Domain Blacklist Regex'
+      );
+      domainBlackList = options.blacklist.split(',').map((item) => item.trim());
     }
   }
 
@@ -192,26 +209,30 @@ function doLookup(entities, options, cb) {
   });
 }
 
-function _isEntityBlacklisted(entityObj) {
-    if (entityObj.isIPv4 && !entityObj.isPrivateIP) {
-        if (ipBlacklistRegex !== null) {
-            if (ipBlacklistRegex.test(entityObj.value)) {
-                Logger.debug({ ip: entityObj.value }, 'Blocked BlackListed IP Lookup');
-                return true;
-            }
-        }
-    }
+function _isEntityBlacklisted(entityObj, options) {
+  if (domainBlackList.indexOf(entityObj.value) >= 0) {
+    return true;
+  }
 
-    if (entityObj.isDomain) {
-        if (domainBlacklistRegex !== null) {
-            if (domainBlacklistRegex.test(entityObj.value)) {
-                Logger.debug({ domain: entityObj.value }, 'Blocked BlackListed Domain Lookup');
-                return true;
-            }
-        }
+  if (entityObj.isIPv4 && !entityObj.isPrivateIP) {
+    if (ipBlacklistRegex !== null) {
+      if (ipBlacklistRegex.test(entityObj.value)) {
+        Logger.debug({ ip: entityObj.value }, 'Blocked BlackListed IP Lookup');
+        return true;
+      }
     }
+  }
 
-    return false;
+  if (entityObj.isDomain) {
+    if (domainBlacklistRegex !== null) {
+      if (domainBlacklistRegex.test(entityObj.value)) {
+        Logger.debug({ domain: entityObj.value }, 'Blocked BlackListed Domain Lookup');
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 /**
