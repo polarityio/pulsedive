@@ -14,8 +14,6 @@ let previousIpRegexAsString = '';
 let domainBlacklistRegex = null;
 let ipBlacklistRegex = null;
 
-const MAX_DOMAIN_LABEL_LENGTH = 63;
-const MAX_ENTITY_LENGTH = 100;
 const MAX_PARALLEL_LOOKUPS = 10;
 const IGNORED_IPS = new Set(['127.0.0.1', '255.255.255.255', '0.0.0.0']);
 const RISK_LEVELS = {
@@ -49,6 +47,10 @@ function startup(logger) {
 
   if (typeof config.request.proxy === 'string' && config.request.proxy.length > 0) {
     defaults.proxy = config.request.proxy;
+  }
+
+  if (typeof config.request.rejectUnauthorized === 'boolean') {
+    defaults.rejectUnauthorized = config.request.rejectUnauthorized;
   }
 
   requestWithDefaults = request.defaults(defaults);
@@ -209,26 +211,6 @@ function doLookup(entities, options, cb) {
 
     cb(null, lookupResults);
   });
-}
-
-function _isInvalidEntity(entityObj) {
-  // DomaintTools API does not accept entities over 100 characters long so if we get any of those we don't look them up
-  if (entityObj.value.length > 100) {
-    return true;
-  }
-
-  // Domain labels (the parts in between the periods, must be 63 characters or less
-  if (entityObj.isDomain) {
-    const invalidLabel = entityObj.value.split(".").find(label => {
-      return label.length > 63;
-    });
-
-    if (typeof invalidLabel !== "undefined") {
-      return true;
-    }
-  }
-
-  return false;
 }
 
 function _isEntityBlacklisted(entityObj, options) {
