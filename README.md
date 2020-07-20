@@ -20,15 +20,15 @@ Only display indicators that have a Risk value greater or equal to the selected 
 
 If checked, the integration will display indicators with an Risk level of "unknown".
 
-### Blacklist Domains
+### Ignored Entities
 
 Comma delimited list of domains that you do not want to lookup.
 
-### Domain Black List Regex
+### Ignored Domain Regex
 
-Domains that match the given regex will not be looked up (if blank, no domains will be black listed)
+Domains that match the given regex will not be looked up.
 
-#### Regex Blacklist to Ignore Domain and Subdomains
+#### Regex to Ignore Domain and Subdomains
 
 The below Regex Blacklist will ignore the domain `google.com` and all of its subdomains.
 
@@ -36,7 +36,7 @@ The below Regex Blacklist will ignore the domain `google.com` and all of its sub
 ^(.*\.google\.com|google\.com)
 ```
 
-#### Regex Blacklist to Ignore Subdomains
+#### Regex to Ignore Subdomains
 
 The following regex will ignore all subdomains of `google`:
 
@@ -66,9 +66,9 @@ google.com, linkedin.com
 
 This will ignore the actual domain `google.com` and `linkedin.com`.
 
-### IP Black List Regex
+### Ignored IP Regex
 
-IPs that match the given regex will not be looked up (if blank, no IPs will be black listed)
+IPs that match the given regex will not be looked up.
 
 ## Installation Instructions
 
