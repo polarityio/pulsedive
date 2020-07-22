@@ -130,8 +130,8 @@ module.exports = {
         }
       ],
       multiple: false,
-      userCanEdit: true,
-      adminOnly: false
+      userCanEdit: false,
+      adminOnly: true
     },
     {
       key: 'showUnknownRisk',
@@ -149,7 +149,7 @@ module.exports = {
       description: 'Comma delimited list of domains that you do not want to lookup.',
       default: '',
       type: 'text',
-      userCanEdit: true,
+      userCanEdit: false,
       adminOnly: false
     },
     {
@@ -159,7 +159,7 @@ module.exports = {
         'Domains that match the given regex will not be looked up.',
       default: '',
       type: 'text',
-      userCanEdit: true,
+      userCanEdit: false,
       adminOnly: false
     },
     {
@@ -169,7 +169,7 @@ module.exports = {
         'IPs that match the given regex will not be looked up.',
       default: '',
       type: 'text',
-      userCanEdit: true,
+      userCanEdit: false,
       adminOnly: false
     }
   ]
