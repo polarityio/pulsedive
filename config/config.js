@@ -71,7 +71,11 @@ module.exports = {
     ca: '',
     // An HTTP proxy to be used. Supports proxy Auth with Basic Auth, identical to support for
     // the url parameter (by embedding the auth info in the uri)
-    proxy: ''
+    proxy: '',
+    // If set to false, the integration will ignore SSL errors.  This will allow the integration to connect
+    // to the response without valid SSL certificates.  Please note that we do NOT recommending setting this
+    // to false in a production environment.
+    rejectUnauthorized: true
   },
   logging: {
     level: 'info' //trace, debug, info, warn, error, fatal
@@ -126,8 +130,8 @@ module.exports = {
         }
       ],
       multiple: false,
-      userCanEdit: true,
-      adminOnly: false
+      userCanEdit: false,
+      adminOnly: true
     },
     {
       key: 'showUnknownRisk',
@@ -140,8 +144,8 @@ module.exports = {
       adminOnly: false
     },
     {
-      key: 'blacklist',
-      name: 'Blacklist Domains',
+      key: 'blocklist',
+      name: 'Ignored Entities',
       description: 'Comma delimited list of domains that you do not want to lookup.',
       default: '',
       type: 'text',
@@ -150,9 +154,9 @@ module.exports = {
     },
     {
       key: 'domainBlacklistRegex',
-      name: 'Domain Black List Regex',
+      name: 'Ignored Domain Regex',
       description:
-        'Domains that match the given regex will not be looked up (if blank, no domains will be black listed)',
+        'Domains that match the given regex will not be looked up.',
       default: '',
       type: 'text',
       userCanEdit: false,
@@ -160,9 +164,9 @@ module.exports = {
     },
     {
       key: 'ipBlacklistRegex',
-      name: 'IP Black List Regex',
+      name: 'Ignored IP Regex',
       description:
-        'IPs that match the given regex will not be looked up (if blank, no IPs will be black listed)',
+        'IPs that match the given regex will not be looked up.',
       default: '',
       type: 'text',
       userCanEdit: false,
