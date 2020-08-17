@@ -30,7 +30,7 @@ Domains that match the given regex will not be looked up.
 
 #### Regex to Ignore Domain and Subdomains
 
-The below Regex Blacklist will ignore the domain `google.com` and all of its subdomains.
+The below Ignored Domain Regex will ignore the domain `google.com` and all of its subdomains.
 
 ```
 ^(.*\.google\.com|google\.com)
@@ -44,7 +44,7 @@ The following regex will ignore all subdomains of `google`:
 ^.*\.google\.com
 ```
 
-If you also wanted to ignore the base domain you could add the following to your `Blacklist Domains` option:
+If you also wanted to ignore the base domain you could add the following to your `Ignored Domain Regex` option:
 
 ```
 google.com
@@ -52,7 +52,7 @@ google.com
 
 #### Ignoring Multiple Domains
 
-You can also ignore multiple domains.  For example, if you wanted to ignore all subdomains of `linkedin` and `google` you could add this to the regex blacklist:
+You can also ignore multiple domains.  For example, if you wanted to ignore all subdomains of `linkedin` and `google` you could add this to the Ignored Domain Regex:
 
 ```
 ^(.*\.google\.com|.*\.linkedin\.com)
