@@ -1,277 +1,275 @@
-<div class="p-non-exfoliate-outer-padding">
-    <h1 class="p-title">
-        {{fa-icon "shield-alt" fixedWidth=true}} Risk Score
-    </h1>
+<h1 class="p-title">
+  {{fa-icon "shield-alt" fixedWidth=true}} Risk Score
+</h1>
 
-    {{#if details.risk}}
-        <div>
-            <span class="p-key">Risk: </span>
-            <span class="p-value">{{details.risk}}</span>
-        </div>
-    {{/if}}
+{{#if details.risk}}
+  <div>
+      <span class="p-key">Risk: </span>
+      <span class="p-value">{{details.risk}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.manualrisk}}
-        <div>
-            <span class="p-key"> Manual Risk: </span>
-            <span class="p-value">{{details.manualrisk}}</span>
-        </div>
-    {{/if}}
+{{#if details.manualrisk}}
+  <div>
+      <span class="p-key"> Manual Risk: </span>
+      <span class="p-value">{{details.manualrisk}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.risk_recommended}}
-        <div>
-            <span class="p-key">Risk Recommendation: </span>
-            <span class="p-value">{{details.risk_recommended}}</span>
-        </div>
-    {{/if}}
+{{#if details.risk_recommended}}
+  <div>
+      <span class="p-key">Risk Recommendation: </span>
+      <span class="p-value">{{details.risk_recommended}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.retired}}
-        <div>
-            <span class="p-key">Retired: </span>
-            <span class="p-value">{{details.retired}}</span>
-        </div>
-    {{/if}}
+{{#if details.retired}}
+  <div>
+      <span class="p-key">Retired: </span>
+      <span class="p-value">{{details.retired}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.stamp_added}}
-        <div>
-            <span class="p-key">Date Added: </span>
-            <span class="p-value">{{details.stamp_added}}</span>
-        </div>
-    {{/if}}
+{{#if details.stamp_added}}
+  <div>
+      <span class="p-key">Date Added: </span>
+      <span class="p-value">{{details.stamp_added}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.stamp_updated}}
-        <div>
-            <span class="p-key">Date Updated: </span>
-            <span class="p-value">{{details.stamp_updated}}</span>
-        </div>
-    {{/if}}
+{{#if details.stamp_updated}}
+  <div>
+      <span class="p-key">Date Updated: </span>
+      <span class="p-value">{{details.stamp_updated}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.stamp_retired}}
-        <div>
-            <span class="p-key">Date Retired: </span>
-            <span class="p-value">{{details.retired}}</span>
-        </div>
-    {{/if}}
+{{#if details.stamp_retired}}
+  <div>
+      <span class="p-key">Date Retired: </span>
+      <span class="p-value">{{details.retired}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.riskfactors}}
-        <div>
-            <table>
-                <thead>
-                <th>Risk Factor</th>
-                <th class="risk-factor-risk-column">Risk</th>
-                </thead>
-                <tbody>
-                {{#each (limit details.riskfactors maxRiskFactors) as |risk|}}
-                    <tr>
-                        <td>{{risk.description}}</td>
-                        <td>{{risk.risk}}</td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
+{{#if details.riskfactors}}
+  <div>
+      <table>
+          <thead>
+          <th>Risk Factor</th>
+          <th class="risk-factor-risk-column">Risk</th>
+          </thead>
+          <tbody>
+          {{#each (limit details.riskfactors maxRiskFactors) as |risk|}}
+              <tr>
+                  <td>{{risk.description}}</td>
+                  <td>{{risk.risk}}</td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
 
-            {{#if (gt details.riskfactors.length maxRiskFactors)}}
-                <span class="p-footnote">(Not all risk factors shown)</span>
-            {{/if}}
-        </div>
-    {{/if}}
+      {{#if (gt details.riskfactors.length maxRiskFactors)}}
+          <span class="p-footnote">(Not all risk factors shown)</span>
+      {{/if}}
+  </div>
+{{/if}}
 
-    {{#if details.redirects}}
-        <div>
-            {{#if (gt details.redirects.from.length 0)}}
-                <table>
-                    <thead>
-                    <th>Redirect From</th>
-                    </thead>
-                    <tbody>
-                    {{#each (limit details.redirects.from maxRedirects) as |from|}}
-                        <tr>
-                            <td>{{from.indicator}}</td>
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-            {{/if}}
-            {{#if (gt details.redirects.to.length 0)}}
-                <table>
-                    <thead>
-                    <th>Redirect To</th>
-                    </thead>
-                    <tbody>
-                    {{#each (limit details.redirects.to maxRedirects) as |to|}}
-                        <tr>
-                            <td>{{to.indicator}}</td>
-                        </tr>
-                    {{/each}}
-                    </tbody>
-                </table>
-            {{/if}}
-            {{#if (gt details.redirects.length maxRedirects)}}
-                <span class="p-footnote">(Not all redirects shown)</span>
-            {{/if}}
-        </div>
-    {{/if}}
+{{#if details.redirects}}
+  <div>
+      {{#if (gt details.redirects.from.length 0)}}
+          <table>
+              <thead>
+              <th>Redirect From</th>
+              </thead>
+              <tbody>
+              {{#each (limit details.redirects.from maxRedirects) as |from|}}
+                  <tr>
+                      <td>{{from.indicator}}</td>
+                  </tr>
+              {{/each}}
+              </tbody>
+          </table>
+      {{/if}}
+      {{#if (gt details.redirects.to.length 0)}}
+          <table>
+              <thead>
+              <th>Redirect To</th>
+              </thead>
+              <tbody>
+              {{#each (limit details.redirects.to maxRedirects) as |to|}}
+                  <tr>
+                      <td>{{to.indicator}}</td>
+                  </tr>
+              {{/each}}
+              </tbody>
+          </table>
+      {{/if}}
+      {{#if (gt details.redirects.length maxRedirects)}}
+          <span class="p-footnote">(Not all redirects shown)</span>
+      {{/if}}
+  </div>
+{{/if}}
 
-    {{#if details.properties.geo}}
-        <h1 class="p-title">
-            {{fa-icon "map-marker-alt" fixedWidth=true}}  Geographical Information
-        </h1>
-    {{/if}}
+{{#if details.properties.geo}}
+  <h1 class="p-title">
+      {{fa-icon "map-marker-alt" fixedWidth=true}}  Geographical Information
+  </h1>
+{{/if}}
 
-    {{#if details.properties.geo.asn}}
-        <div>
-            <span class="p-key">ASN: </span>
-            <span class="p-value">{{details.properties.geo.asn}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.geo.asn}}
+  <div>
+      <span class="p-key">ASN: </span>
+      <span class="p-value">{{details.properties.geo.asn}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.geo.address}}
-        <div>
-            <span class="p-key">Address: </span>
-            <span class="p-value">{{details.properties.geo.address}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.geo.address}}
+  <div>
+      <span class="p-key">Address: </span>
+      <span class="p-value">{{details.properties.geo.address}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.geo.city}}
-        <div>
-            <span class="p-key">City: </span>
-            <span class="p-value">{{details.properties.geo.city}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.geo.city}}
+  <div>
+      <span class="p-key">City: </span>
+      <span class="p-value">{{details.properties.geo.city}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.geo.country}}
-        <div>
-            <span class="p-key">Country: </span>
-            <span class="p-value">{{details.properties.geo.country}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.geo.country}}
+  <div>
+      <span class="p-key">Country: </span>
+      <span class="p-value">{{details.properties.geo.country}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.geo.org}}
-        <div>
-            <span class="p-key">Org: </span>
-            <span class="p-value">{{details.properties.geo.org}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.geo.org}}
+  <div>
+      <span class="p-key">Org: </span>
+      <span class="p-value">{{details.properties.geo.org}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.http}}
-        <h1 class="p-title">
-            {{fa-icon "desktop" fixedWidth=true}} HTTP Information
-        </h1>
-    {{/if}}
+{{#if details.properties.http}}
+  <h1 class="p-title">
+      {{fa-icon "desktop" fixedWidth=true}} HTTP Information
+  </h1>
+{{/if}}
 
-    {{#if details.properties.http.Accept-Ranges}}
-        <div>
-            <span class="p-key">Accept Ranges: </span>
-            <span class="p-value">{{details.properties.http.Accept-Ranges}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.http.Accept-Ranges}}
+  <div>
+      <span class="p-key">Accept Ranges: </span>
+      <span class="p-value">{{details.properties.http.Accept-Ranges}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.http.Connection}}
-        <div>
-            <span class="p-key">Connection: </span>
-            <span class="p-value">{{details.properties.http.Connection}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.http.Connection}}
+  <div>
+      <span class="p-key">Connection: </span>
+      <span class="p-value">{{details.properties.http.Connection}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.http.Last-Modified}}
-        <div>
-            <span class="p-key">Last Modified: </span>
-            <span class="p-value">{{details.properties.http.Last-Modified}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.http.Last-Modified}}
+  <div>
+      <span class="p-key">Last Modified: </span>
+      <span class="p-value">{{details.properties.http.Last-Modified}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.http.Server}}
-        <div>
-            <span class="p-key">Server: </span>
-            <span class="p-value">{{details.properties.http.Server}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.http.Server}}
+  <div>
+      <span class="p-key">Server: </span>
+      <span class="p-value">{{details.properties.http.Server}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.ssl}}
-        <h1 class="p-title">
-            {{fa-icon "lock" fixedWidth=true}} SSL Information
-        </h1>
-    {{/if}}
+{{#if details.properties.ssl}}
+  <h1 class="p-title">
+      {{fa-icon "lock" fixedWidth=true}} SSL Information
+  </h1>
+{{/if}}
 
-    {{#if details.properties.ssl.cipher}}
-        <div>
-            <span class="p-key">Cipher: </span>
-            <span class="p-value">{{details.properties.ssl.cipher}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.ssl.cipher}}
+  <div>
+      <span class="p-key">Cipher: </span>
+      <span class="p-value">{{details.properties.ssl.cipher}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.ssl.domain}}
-        <div>
-            <span class="p-key">Domain: </span>
-            <span class="p-value">{{details.properties.ssl.domain}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.ssl.domain}}
+  <div>
+      <span class="p-key">Domain: </span>
+      <span class="p-value">{{details.properties.ssl.domain}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.ssl.issuer}}
-        <div>
-            <span class="p-key">Issuer: </span>
-            <span class="p-value">{{details.properties.ssl.issuer}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.ssl.issuer}}
+  <div>
+      <span class="p-key">Issuer: </span>
+      <span class="p-value">{{details.properties.ssl.issuer}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.ssl.subject}}
-        <div>
-            <span class="p-key">Subject: </span>
-            <span class="p-value">{{details.properties.ssl.subject}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.ssl.subject}}
+  <div>
+      <span class="p-key">Subject: </span>
+      <span class="p-value">{{details.properties.ssl.subject}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.whois}}
-        <h1 class="p-title">
-            {{fa-icon "globe" fixedWidth=true}} WhoIs
-        </h1>
-    {{/if}}
+{{#if details.properties.whois}}
+  <h1 class="p-title">
+      {{fa-icon "globe" fixedWidth=true}} WhoIs
+  </h1>
+{{/if}}
 
-    {{#if details.properties.whois.[++registrant]}}
-        <div>
-            <span class="p-key">Registrant: </span>
-            <span class="p-value">{{details.properties.whois.[++registrant]}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.whois.[++registrant]}}
+  <div>
+      <span class="p-key">Registrant: </span>
+      <span class="p-value">{{details.properties.whois.[++registrant]}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.whois.[++updated]}}
-        <div>
-            <span class="p-key">Date Updated: </span>
-            <span class="p-value">{{details.properties.whois.[++updated]}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.whois.[++updated]}}
+  <div>
+      <span class="p-key">Date Updated: </span>
+      <span class="p-value">{{details.properties.whois.[++updated]}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.properties.whois.[++expires]}}
-        <div>
-            <span class="p-key">Expires: </span>
-            <span class="p-value">{{details.properties.whois.[++expires]}}</span>
-        </div>
-    {{/if}}
+{{#if details.properties.whois.[++expires]}}
+  <div>
+      <span class="p-key">Expires: </span>
+      <span class="p-value">{{details.properties.whois.[++expires]}}</span>
+  </div>
+{{/if}}
 
-    {{#if details.threats}}
-        <h1 class="p-title">
-            {{fa-icon "fire" fixedWidth=true}} Threats
-        </h1>
-        <div class="tags">
-            {{#each (limit details.threats maxThreats) as |threats|}}
-                <span class="pulse-tag">{{threats.name}}</span>
-            {{/each}}
-            {{#if (gt details.threats.length maxThreats)}}
-                <span class="p-footnote">(Not all threats shown)</span>
-            {{/if}}
-        </div>
-    {{/if}}
+{{#if details.threats}}
+  <h1 class="p-title">
+      {{fa-icon "fire" fixedWidth=true}} Threats
+  </h1>
+  <div class="tags">
+      {{#each (limit details.threats maxThreats) as |threats|}}
+          <span class="pulse-tag">{{threats.name}}</span>
+      {{/each}}
+      {{#if (gt details.threats.length maxThreats)}}
+          <span class="p-footnote">(Not all threats shown)</span>
+      {{/if}}
+  </div>
+{{/if}}
 
-    {{#if details.feeds}}
-        <h1 class="p-title">
-            {{fa-icon "rss" fixedWidth=true}} Feeds
-        </h1>
-        <div class="tags">
-            {{#each (limit details.feeds maxThreats) as |feeds|}}
-                <span class="pulse-tag">{{feeds.name}}</span>
-            {{/each}}
-            {{#if (gt details.feeds.length maxThreats)}}
-                <span class="p-footnote">(Not all feeds shown)</span>
-            {{/if}}
-        </div>
-    {{/if}}
-</div>
+{{#if details.feeds}}
+  <h1 class="p-title">
+      {{fa-icon "rss" fixedWidth=true}} Feeds
+  </h1>
+  <div class="tags">
+      {{#each (limit details.feeds maxThreats) as |feeds|}}
+          <span class="pulse-tag">{{feeds.name}}</span>
+      {{/each}}
+      {{#if (gt details.feeds.length maxThreats)}}
+          <span class="p-footnote">(Not all feeds shown)</span>
+      {{/if}}
+  </div>
+{{/if}}
