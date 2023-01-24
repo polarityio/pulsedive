@@ -1,6 +1,6 @@
 'use strict';
 
-const request = require('request');
+const request = require('postman-request');
 const config = require('./config/config');
 const async = require('async');
 const fs = require('fs');
@@ -25,7 +25,7 @@ const RISK_LEVELS = {
   critical: 4
 };
 
-function startup(logger) {
+function startup (logger) {
   Logger = logger;
   let defaults = {};
 
@@ -56,7 +56,7 @@ function startup(logger) {
   requestWithDefaults = request.defaults(defaults);
 }
 
-function _setupRegexBlocklists(options) {
+function _setupRegexBlocklists (options) {
   if (
     options.domainBlocklistRegex !== previousDomainRegexAsString &&
     options.domainBlocklistRegex.length === 0
@@ -106,7 +106,7 @@ function _setupRegexBlocklists(options) {
   }
 }
 
-function doLookup(entities, options, cb) {
+function doLookup (entities, options, cb) {
   const lookupResults = [];
   const tasks = [];
 
@@ -132,8 +132,8 @@ function doLookup(entities, options, cb) {
       json: true
     };
 
-    tasks.push(function(done) {
-      requestWithDefaults(requestOptions, function(error, res, body) {
+    tasks.push(function (done) {
+      requestWithDefaults(requestOptions, function (error, res, body) {
         Logger.trace(
           { body: body, statusCode: res ? res.statusCode : 'Not Available', entity: entity.value },
           'Result of Lookup'
@@ -213,7 +213,7 @@ function doLookup(entities, options, cb) {
   });
 }
 
-function _isEntityBlocklisted(entityObj, options) {
+function _isEntityBlocklisted (entityObj, options) {
   if (domainBlockList.indexOf(entityObj.value) >= 0) {
     return true;
   }
@@ -245,14 +245,14 @@ function _isEntityBlocklisted(entityObj, options) {
  * @returns {boolean}
  * @private
  */
-function _isValidEntity(entity) {
+function _isValidEntity (entity) {
   if (entity.isIP && (entity.isPrivateIP || IGNORED_IPS.has(entity.value))) {
     return false;
   }
   return true;
 }
 
-function _filterOutRiskLevel(body, options) {
+function _filterOutRiskLevel (body, options) {
   if (body.risk === 'unknown' && options.showUnknownRisk === true) {
     return false;
   }
@@ -267,14 +267,14 @@ function _filterOutRiskLevel(body, options) {
   return true;
 }
 
-function _isMiss(body) {
+function _isMiss (body) {
   if (typeof body.error === 'string' && body.error === 'Indicator not found.') {
     return true;
   }
   return false;
 }
 
-function validateOptions(userOptions, cb) {
+function validateOptions (userOptions, cb) {
   let errors = [];
   if (
     typeof userOptions.apiKey.value !== 'string' ||
