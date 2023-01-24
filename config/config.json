@@ -1,0 +1,117 @@
+{
+  "name": "Pulsedive",
+  "acronym": "PLSE",
+  "defaultColor": "light-pink",
+  "description": "Lookup indicators against Pulsedive's IOC search",
+  "entityTypes": ["IPv4", "domain"],
+  "styles": ["./styles/pulse.less"],
+  "block": {
+    "component": {
+      "file": "./components/block.js"
+    },
+    "template": {
+      "file": "./templates/block.hbs"
+    }
+  },
+  "summary": {
+    "component": {
+      "file": "./components/summary.js"
+    },
+    "template": {
+      "file": "./templates/summary.hbs"
+    }
+  },
+  "request": {
+    "cert": "",
+    "key": "",
+    "passphrase": "",
+    "ca": "",
+    "proxy": "",
+    "rejectUnauthorized": true
+  },
+  "logging": {
+    "level": "info"
+  },
+  "options": [
+    {
+      "key": "apiKey",
+      "name": "API Key",
+      "description": "PulseDive API Key.",
+      "default": "",
+      "type": "password",
+      "userCanEdit": true,
+      "adminOnly": false
+    },
+    {
+      "key": "riskLevelDisplay",
+      "name": "Minimum Risk Level to Display",
+      "description": "Only display indicators that have a Risk value greater or equal to the selected risk level.",
+      "default": {
+        "value": "medium",
+        "display": "Medium"
+      },
+      "type": "select",
+      "options": [
+        {
+          "value": "none",
+          "display": "None"
+        },
+        {
+          "value": "low",
+          "display": "Low"
+        },
+        {
+          "value": "medium",
+          "display": "Medium"
+        },
+        {
+          "value": "high",
+          "display": "High"
+        },
+        {
+          "value": "critical",
+          "display": "Critical"
+        }
+      ],
+      "multiple": false,
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "showUnknownRisk",
+      "name": "Show Indicators with Unknown Risk",
+      "description": "If checked, the integration will display indicators with an Risk level of \"unknown\".",
+      "default": false,
+      "type": "boolean",
+      "userCanEdit": true,
+      "adminOnly": false
+    },
+    {
+      "key": "blocklist",
+      "name": "Ignored Entities",
+      "description": "Comma delimited list of domains that you do not want to lookup.",
+      "default": "",
+      "type": "text",
+      "userCanEdit": false,
+      "adminOnly": false
+    },
+    {
+      "key": "domainBlocklistRegex",
+      "name": "Ignored Domain Regex",
+      "description": "Domains that match the given regex will not be looked up.",
+      "default": "",
+      "type": "text",
+      "userCanEdit": false,
+      "adminOnly": false
+    },
+    {
+      "key": "ipBlocklistRegex",
+      "name": "Ignored IP Regex",
+      "description": "IPs that match the given regex will not be looked up.",
+      "default": "",
+      "type": "text",
+      "userCanEdit": false,
+      "adminOnly": false
+    }
+  ]
+}
