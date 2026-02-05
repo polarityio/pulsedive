@@ -4,8 +4,13 @@
   "acronym": "PLSE",
   "defaultColor": "light-pink",
   "description": "Lookup indicators against Pulsedive's IOC search",
-  "entityTypes": ["IPv4", "domain"],
-  "styles": ["./styles/pulse.less"],
+  "entityTypes": [
+    "IPv4",
+    "domain"
+  ],
+  "styles": [
+    "./styles/pulse.less"
+  ],
   "block": {
     "component": {
       "file": "./components/block.js"
@@ -113,5 +118,10 @@
       "userCanEdit": false,
       "adminOnly": false
     }
-  ]
+  ],
+  "reducer": {
+    "details": {
+      "file": "./reducers/details.json"
+    }
+  }
 }

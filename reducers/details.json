@@ -1,0 +1,41 @@
+{
+  "root": {
+    "path": "",
+    "on_null": "return_empty"
+  },
+  "pipeline": [
+    {
+      "op": "copy",
+      "from": "risk",
+      "to": "reduced_results.risk"
+    },
+    {
+      "op": "copy",
+      "from": "risk_recommended",
+      "to": "reduced_results.risk_recommended"
+    },
+    {
+      "op": "copy",
+      "from": "riskfactors",
+      "to": "reduced_results.riskfactors"
+    },
+    {
+      "op": "copy",
+      "from": "retired",
+      "to": "reduced_results.retired"
+    },
+    {
+      "op": "copy",
+      "from": "stamp_updated",
+      "to": "reduced_results.stamp_updated"
+    },
+    {
+      "op": "prune",
+      "strategy": "empty_values",
+      "target": "reduced_results"
+    }
+  ],
+  "output": {
+    "result": "$working.reduced_results"
+  }
+}

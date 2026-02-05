@@ -1,0 +1,123 @@
+{
+  "indicator": "malicious-domain.example.com",
+  "iid": 12345678,
+  "type": "domain",
+  "risk": "high",
+  "risk_recommended": "high",
+  "manualrisk": 0,
+  "retired": false,
+  "stamp_added": 1640000000,
+  "stamp_updated": 1704067200,
+  "stamp_seen": 1704067200,
+  "stamp_probed": 1704066000,
+  "stamp_retired": null,
+  "recent": true,
+  "riskfactors": [
+    {
+      "description": "Hosting malware",
+      "risk": "high"
+    },
+    {
+      "description": "Phishing",
+      "risk": "high"
+    },
+    {
+      "description": "Associated with known threat actor",
+      "risk": "medium"
+    },
+    {
+      "description": "Newly registered domain",
+      "risk": "low"
+    }
+  ],
+  "threats": [
+    {
+      "tid": 98765,
+      "name": "Emotet",
+      "category": "malware"
+    },
+    {
+      "tid": 98766,
+      "name": "Banking Trojan",
+      "category": "malware"
+    }
+  ],
+  "feeds": [
+    {
+      "fid": 1234,
+      "name": "AbuseCH URLhaus",
+      "category": "malware"
+    },
+    {
+      "fid": 5678,
+      "name": "PhishTank",
+      "category": "phishing"
+    }
+  ],
+  "properties": {
+    "geo": {
+      "asn": "AS12345",
+      "org": "Example Hosting Ltd",
+      "address": "192.0.2.100",
+      "city": "Amsterdam",
+      "country": "NL"
+    },
+    "http": {
+      "Server": "nginx/1.18.0",
+      "Connection": "keep-alive",
+      "Accept-Ranges": "bytes",
+      "Last-Modified": "Tue, 01 Jan 2024 00:00:00 GMT"
+    },
+    "ssl": {
+      "domain": "*.example.com",
+      "cipher": "TLS_AES_128_GCM_SHA256",
+      "issuer": "Let's Encrypt Authority X3",
+      "subject": "CN=*.example.com"
+    },
+    "whois": {
+      "++registrant": "Privacy Protected",
+      "++updated": "2024-01-01",
+      "++expires": "2025-01-01",
+      "++created": "2023-12-15"
+    },
+    "dns": {
+      "a": ["192.0.2.100"],
+      "ns": ["ns1.example.com", "ns2.example.com"],
+      "mx": []
+    }
+  },
+  "redirects": {
+    "from": [
+      {
+        "iid": 11111,
+        "indicator": "redirect-source.example.com"
+      }
+    ],
+    "to": [
+      {
+        "iid": 22222,
+        "indicator": "final-destination.example.com"
+      }
+    ]
+  },
+  "comments": [],
+  "attributes": [
+    {
+      "attribute": "port",
+      "value": "80"
+    },
+    {
+      "attribute": "protocol",
+      "value": "http"
+    }
+  ],
+  "summary": {
+    "total": 45,
+    "recent": 12,
+    "active": 8
+  },
+  "links": {
+    "view": "https://pulsedive.com/indicator/?iid=12345678",
+    "details": "https://pulsedive.com/api/info.php?iid=12345678"
+  }
+}
